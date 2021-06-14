@@ -8821,15 +8821,16 @@ body.okayNav-loaded {
   }
 
   .header .search {
-    width: 90%;
+    /* width: 90%; */
     float: right;
   }
 
   .header .profile-block {
     padding: 0;
     margin: 10px 0;
-    width: 8.33333%;
+    /* width: 8.33333%; */
     float: left;
+    display: none;
   }
 
   .header #avatar {
