@@ -8823,6 +8823,7 @@ body.okayNav-loaded {
   .header .search {
     /* width: 90%; */
     float: right;
+    margin-left: 10px;
   }
 
   .header .profile-block {
