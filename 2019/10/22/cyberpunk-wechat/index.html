@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>一个简单的微信小程序-赛博朋克2077倒计时-以及简单的云开发 | компот</title>
+  <meta name="description" content="闲来无事, 做了一个赛博朋克 2077 发售倒计时页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的微信小程序-赛博朋克2077倒计时-以及简单的云开发">
+<meta property="og:url" content="https://laputaz.github.io/home/2019/10/22/cyberpunk-wechat/index.html">
+<meta property="og:site_name" content="River Z">
+<meta property="og:description" content="闲来无事, 做了一个赛博朋克 2077 发售倒计时页面">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714103516760.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714103837941.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714110425829.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714110308469.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714111414724.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190714175808240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190715113018923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190715113417106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-10-21T16:49:13.000Z">
+<meta property="article:modified_time" content="2021-06-14T08:28:52.071Z">
+<meta property="article:author" content="River Z">
+<meta property="article:tag" content="wechat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190714103516760.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://laputaz.github.io/home/2019/10/22/cyberpunk-wechat/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="River Z" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="images/juice.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-right theme-green" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/juice.svg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">River</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> мурманск, россия</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 🍒 - мой товарищ, хотите немного бабушкиного компота ? </p><p> 🍸 - нет, дайте, пожалуйста, бутылку водки. </p> <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/angular/" style="font-size: 13px;">angular</a> <a href="/tags/cookie/" style="font-size: 13px;">cookie</a> <a href="/tags/css/" style="font-size: 13px;">css</a> <a href="/tags/javascript/" style="font-size: 14px;">javascript</a> <a href="/tags/life/" style="font-size: 13px;">life</a> <a href="/tags/vue/" style="font-size: 13px;">vue</a> <a href="/tags/wechat/" style="font-size: 13px;">wechat</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-cyberpunk-wechat" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一个简单的微信小程序-赛博朋克2077倒计时-以及简单的云开发
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/10/22/cyberpunk-wechat/" class="article-date">
+	  <time datetime="2019-10-21T16:49:13.000Z" itemprop="datePublished">2019-10-22</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/wechat/" rel="tag">wechat</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/22/cyberpunk-wechat/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>闲来无事, 做了一个赛博朋克 2077 发售倒计时页面</p>
+<a id="more"></a>
+
+<h4 id="AppID"><a href="#AppID" class="headerlink" title="AppID"></a>AppID</h4><p>申请到一个小程序后, 会对应一个 AppID</p>
+<h4 id="基本目录结构"><a href="#基本目录结构" class="headerlink" title="基本目录结构"></a>基本目录结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- cloudfunctions 云函数目录</span><br><span class="line">- miniprogram 开发目录</span><br><span class="line">- README.md 描述项目</span><br><span class="line">- project.config.json 项目配置</span><br></pre></td></tr></table></figure>
+
+<h4 id="cloudfunctions"><a href="#cloudfunctions" class="headerlink" title="cloudfunctions"></a>cloudfunctions</h4><p><img src="https://img-blog.csdnimg.cn/20190714103516760.png" alt="cloudfunctions结构"><br>结构如图, 每一个云函数会新建一个目录, index.js 为入口, <code>login</code> / <code>openapi</code> 是自带的, 可以获取 AppID 等</p>
+<h4 id="miniprogram"><a href="#miniprogram" class="headerlink" title="miniprogram"></a>miniprogram</h4><p><img src="https://img-blog.csdnimg.cn/20190714103837941.png" alt="miniprogram"><br>结构如图:<br>images 存放静态图片<br>miniprogram_npm 是 npm 安装的依赖构建 node_module 后生成的库文件目录<br>pages 下编写各个界面<br>style 下存储了一些样式文件<br>app.js / app.json 分别是程序入口 和主界面配置</p>
+<p>以 app.json 为例</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"pages"</span>: [<span class="string">"pages/imghander/imghander"</span>, <span class="string">"pages/base/base"</span>],</span><br><span class="line">  <span class="attr">"window"</span>: &#123;</span><br><span class="line">    <span class="attr">"backgroundColor"</span>: <span class="string">"#F6F6F6"</span>,</span><br><span class="line">    <span class="attr">"backgroundTextStyle"</span>: <span class="string">"light"</span>,</span><br><span class="line">    <span class="attr">"navigationBarBackgroundColor"</span>: <span class="string">"#faf003"</span>,</span><br><span class="line">    <span class="attr">"navigationBarTitleText"</span>: <span class="string">"Cyberpunk 2077"</span>,</span><br><span class="line">    <span class="attr">"navigationBarTextStyle"</span>: <span class="string">"white"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"sitemapLocation"</span>: <span class="string">"sitemap.json"</span>,</span><br><span class="line">  <span class="attr">"tabBar"</span>: &#123;</span><br><span class="line">    <span class="attr">"color"</span>: <span class="string">"#000000"</span>,</span><br><span class="line">    <span class="attr">"selectedColor"</span>: <span class="string">"#000000"</span>,</span><br><span class="line">    <span class="attr">"list"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"pagePath"</span>: <span class="string">"pages/imghander/imghander"</span>,</span><br><span class="line">        <span class="attr">"text"</span>: <span class="string">"2077"</span>,</span><br><span class="line">        <span class="attr">"iconPath"</span>: <span class="string">"images/film.png"</span>,</span><br><span class="line">        <span class="attr">"selectedIconPath"</span>: <span class="string">"images/film-actived.png"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"pagePath"</span>: <span class="string">"pages/base/base"</span>,</span><br><span class="line">        <span class="attr">"text"</span>: <span class="string">"Cyberpunk"</span>,</span><br><span class="line">        <span class="attr">"iconPath"</span>: <span class="string">"images/profile.png"</span>,</span><br><span class="line">        <span class="attr">"selectedIconPath"</span>: <span class="string">"images/profile-actived.png"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>pages</code>属性 定义界面路径, 相当于路由</p>
+<p><code>tabBar</code>属性定义了底栏相关的属性<br><img src="https://img-blog.csdnimg.cn/20190714110425829.png" alt="在这里插入图片描述"><br><code>window</code>属性定义了标题栏的文字和颜色 , 文字颜色 navigationBarTextStyle 只能是 black 或 white<br><img src="https://img-blog.csdnimg.cn/20190714110308469.png" alt="在这里插入图片描述"></p>
+<h4 id="页面目录-pages"><a href="#页面目录-pages" class="headerlink" title="页面目录 pages"></a>页面目录 pages</h4><p>以 pages 下的 base 为例<br><img src="https://img-blog.csdnimg.cn/20190714111414724.png" alt="在这里插入图片描述"><br>一个页面初始化会包含四个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">js - &gt; 页面逻辑</span><br><span class="line">json -&gt; 页面配置, 如安装vant库后,  usingComponents 可以引入需要的组件</span><br><span class="line">wxml -&gt; 页面结构</span><br><span class="line">wxss -&gt; 页面样式</span><br></pre></td></tr></table></figure>
+
+<p>下面看一下一个 js 文件的内容</p>
+<h4 id="pages-gt-页面-gt-js"><a href="#pages-gt-页面-gt-js" class="headerlink" title="pages=&gt;页面=&gt;js"></a>pages=&gt;页面=&gt;js</h4><p>以 pages=&gt;base=&gt;base.js 为例, 结构如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pages/base/base.js</span></span><br><span class="line"><span class="keyword">const</span> db = <span class="keyword">new</span> wx.cloud.database();</span><br><span class="line">Page(&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面的初始数据</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面加载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面初次渲染完成</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面显示</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面隐藏</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面卸载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onUnload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面相关事件处理函数--监听用户下拉动作</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onPullDownRefresh: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面上拉触底事件的处理函数</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onReachBottom: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 用户点击右上角分享</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onShareAppMessage: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>预置了很多生命周期函数</p>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p><img src="https://img-blog.csdnimg.cn/20190714175808240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="云开发"><a href="#云开发" class="headerlink" title="云开发"></a>云开发</h4><p>云开发环境创建的时候, 一个账号可以提供两个环境, 每个环境可以设置 id</p>
+<ol>
+<li>云数据库<br>json 形式数据库, 每一条数据都是 json 格式的对象 , 与关系型数据库差异如图, 基于 mongoDB<br>关系型数据库更适合表之间有复杂的关联关系, 文档型更适合频繁的读写操作, 效率高一些<br><img src="https://img-blog.csdnimg.cn/20190715113018923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>包含以下数据类型<br><img src="https://img-blog.csdnimg.cn/20190715113417106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在小程序端操作会有权限控制, 而云函数操作则有完全的读写控制</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="keyword">const</span> db = wx.cloud.database(&#123; <span class="attr">env</span>: <span class="string">"dh"</span> &#125;); <span class="comment">// 传入环境名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入数据, 可以用毁掉的写法, 也可以用promise写法</span></span><br><span class="line"><span class="comment">// 插入的数据会有 id 主键 和 _openid 标识插入的用户</span></span><br><span class="line">db.collection(<span class="string">"user"</span>).add(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: <span class="string">"dh"</span>,</span><br><span class="line">    time: <span class="string">"2019"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  fail: <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// promise写法</span></span><br><span class="line">db.collection(<span class="string">"user"</span>)</span><br><span class="line">  .add(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">      name: <span class="string">"dh"</span>,</span><br><span class="line">      time: <span class="string">"2019"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新数据, doc拿到记录</span></span><br><span class="line">db.collection(<span class="string">"user"</span>)</span><br><span class="line">  .doc(<span class="string">"as1h35idf4g56ahafhjioasdf"</span>)</span><br><span class="line">  .update(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">      name: <span class="string">"dh1"</span>,</span><br><span class="line">      time: <span class="string">"2019"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line">db.collection(<span class="string">"user"</span>)</span><br><span class="line">  .where(&#123; <span class="attr">name</span>: <span class="string">"dh1"</span> &#125;)</span><br><span class="line">  .get();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除  多条数据删除, 需要在云函数进行</span></span><br><span class="line">db.collection(<span class="string">"user"</span>)</span><br><span class="line">  .doc(<span class="string">"as1h35idf4g56ahafhjioasdf"</span>)</span><br><span class="line">  .remove();</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>云函数<br>云函数, 保存在云</p>
+</li>
+<li><p>云存储<br>云存储能力</p>
+</li>
+</ol>
+<ul>
+<li>wx.cloud.uploadFile // 上传</li>
+<li>wx.cloud.downloadFile //下载</li>
+<li>wx.cloud.deleteFile // 删除</li>
+<li>wx.cloud.getTempFileUrl // 临时路径</li>
+<li>….</li>
+<li>….</li>
+</ul>
+<h4 id="举个简单的例子-上传"><a href="#举个简单的例子-上传" class="headerlink" title="举个简单的例子-上传"></a>举个简单的例子-上传</h4><p>用户打开相册选择图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.chooseImage(); <span class="comment">// promise 可以拿到文件临时路径</span></span><br></pre></td></tr></table></figure>
+
+<p>上传至云存储</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.cloud.uploadFile(&#123;</span><br><span class="line">	...</span><br><span class="line">	filePath: <span class="string">''</span> <span class="comment">// 传入上一步读取的文件临时路径</span></span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res.fileID)</span><br><span class="line">&#125;)  <span class="comment">// promise 可以拿到文件的 fileID</span></span><br></pre></td></tr></table></figure>
+
+<p>拿到 fileID 存到云数据库, 便于操作(fileID 可以直接用于 image 组件的 src)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.collection(<span class="string">'image'</span>).add(&#123;<span class="attr">fileID</span>:fileID&#125;) <span class="comment">// 在新建的image表中插入记录</span></span><br><span class="line">&lt;image src=<span class="string">"&#123;fileID&#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span>  <span class="comment">//可展示</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="举个简单的例子-下载"><a href="#举个简单的例子-下载" class="headerlink" title="举个简单的例子-下载"></a>举个简单的例子-下载</h4><p>通过 data-xxx 自定义属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">data-fileid</span>=<span class="string">"agsyuadi123asda"</span> <span class="attr">bindTap</span>=<span class="string">"download"</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使得点击的时候通过 event 获取到文件的 fileID, downloadFile 方法拿到 filePath, 保存到本地</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">download(e)&#123;</span><br><span class="line">	wx.cloud.downloadFile(&#123;</span><br><span class="line">		fileID: e.target.dataset.fileid</span><br><span class="line">	&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;  <span class="comment">//</span></span><br><span class="line">		wx.saveImageToPhotoAlbum(&#123; <span class="comment">//保存</span></span><br><span class="line">			filePath: res.filePath</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://laputaz.github.io/home/2019/10/22/cyberpunk-wechat/" title="一个简单的微信小程序-赛博朋克2077倒计时-以及简单的云开发" target="_blank" rel="external">https://laputaz.github.io/home/2019/10/22/cyberpunk-wechat/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/juice.svg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">River</span><small class="ml-1x"></small></a></h3>
+        <div>不要沉溺过去, 写新的流水账吧</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/10/22/tail-optimization/" title="面试-尾调用优化"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/08/22/flat-and-deepclone/" title="深拷贝和数组扁平化"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+    <!-- <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div> -->
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:laputaz.github.io/home ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

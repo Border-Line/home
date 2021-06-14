@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Vue源码整理, 数据代理和响应式 | компот</title>
+  <meta name="description" content="最近看了一下 Vue 相关的东西 ,整理一下流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码整理, 数据代理和响应式">
+<meta property="og:url" content="https://laputaz.github.io/home/2018/09/22/vue-principle/index.html">
+<meta property="og:site_name" content="River Z">
+<meta property="og:description" content="最近看了一下 Vue 相关的东西 ,整理一下流程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019070309492596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2018-09-22T15:28:34.000Z">
+<meta property="article:modified_time" content="2021-06-14T08:28:52.072Z">
+<meta property="article:author" content="River Z">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019070309492596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://laputaz.github.io/home/2018/09/22/vue-principle/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="River Z" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="images/juice.svg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-right theme-green" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/juice.svg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">River</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> мурманск, россия</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 🍒 - мой товарищ, хотите немного бабушкиного компота ? </p><p> 🍸 - нет, дайте, пожалуйста, бутылку водки. </p> <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/angular/" style="font-size: 13px;">angular</a> <a href="/tags/cookie/" style="font-size: 13px;">cookie</a> <a href="/tags/css/" style="font-size: 13px;">css</a> <a href="/tags/javascript/" style="font-size: 14px;">javascript</a> <a href="/tags/life/" style="font-size: 13px;">life</a> <a href="/tags/vue/" style="font-size: 13px;">vue</a> <a href="/tags/wechat/" style="font-size: 13px;">wechat</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-vue-principle" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue源码整理, 数据代理和响应式
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/09/22/vue-principle/" class="article-date">
+	  <time datetime="2018-09-22T15:28:34.000Z" itemprop="datePublished">2018-09-22</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/javascript/" rel="tag">javascript</a>, <a class="article-tag-link" href="/tags/vue/" rel="tag">vue</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/22/vue-principle/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>最近看了一下 Vue 相关的东西 ,整理一下流程</p>
+<a id="more"></a>
+
+<h4 id="1-数据代理-gt-Object-defineProperty"><a href="#1-数据代理-gt-Object-defineProperty" class="headerlink" title="1. 数据代理 -&gt; Object.defineProperty()"></a>1. 数据代理 -&gt; Object.defineProperty()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 为什么能通过 vm.a 访问到 data 中的 a ?</span></span><br><span class="line"><span class="comment">// 因为会通过 Object.defineProperty 设置了数据代理</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(vm, <span class="string">"a"</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> data.a;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>(val) &#123;</span><br><span class="line">    data.a = val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-模板解析-gt-NodeType-gt-Reg-gt-moustache-gt-v-on-gt-bind-html-class-text"><a href="#2-模板解析-gt-NodeType-gt-Reg-gt-moustache-gt-v-on-gt-bind-html-class-text" class="headerlink" title="2. 模板解析 -&gt; NodeType -&gt; Reg -&gt; moustache -&gt; v-on -&gt; bind/html/class/text"></a><del>2. 模板解析 -&gt; NodeType -&gt; Reg -&gt; moustache -&gt; v-on -&gt; bind/html/class/text</del></h4><p>Vue 2 是虚拟节点 VNode</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#my"</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 拿到 el 对应的模板以后, createDocumentFragment() 产生一个Dom片段</span></span><br><span class="line"><span class="comment">// 再将el所有子节点插入到该Fragment</span></span><br><span class="line"><span class="comment">// 遍历Fragment中每个节点</span></span><br><span class="line"><span class="comment">// 文本 =&gt; 匹配&#123;&#123;&#125;&#125;</span></span><br><span class="line"><span class="comment">// 元素 =&gt; 编译元素的指令</span></span><br><span class="line"><span class="comment">// 普通指令/事件指令 =&gt; 编译完后删除该指令</span></span><br><span class="line"><span class="comment">// 包含子节点 =&gt; 继续迭代</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-数据绑定和响应式-gt-使用数据劫持的技术实现"><a href="#3-数据绑定和响应式-gt-使用数据劫持的技术实现" class="headerlink" title="3. 数据绑定和响应式 -&gt; 使用数据劫持的技术实现"></a>3. 数据绑定和响应式 -&gt; 使用数据劫持的技术实现</h4><p>一旦更新 data 中某个属性数据, 所有界面直接使用或间接使用该属性的节点会更新<br>基本思路: 通过 defineProperty 监视 data 中所有层级数据的变化, 变化则更新界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vm.a &#x3D; 3</span><br><span class="line">&#x3D;&gt; vm.a.set &#x2F;&#x2F; 更新data中的a</span><br><span class="line">&#x3D;&gt; vm.data.a &#x3D; 3</span><br><span class="line">&#x3D;&gt; vm.data.a.set &#x2F;&#x2F;更新界面</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">增加observe &#x3D;&gt; 递归对每个属性 Object.defineProperty 增加 get set, 并且设为configurable:false</span><br><span class="line">除了事件指令, 每个指令&#x2F;表达式 &#x3D;&gt; 增加watcher</span><br><span class="line"></span><br><span class="line">Dep -&gt; &#123;</span><br><span class="line">	实例创建时间 &#x3D;&gt; 给data中每个属性增加observe数据劫持时(增加get,set)创建的, 在模板编译之前, new watcher()以前</span><br><span class="line">	数量 &#x3D;&gt; 与data中属性一一对应(所有层级)</span><br><span class="line">	结构 &#x3D;&gt; &#123;</span><br><span class="line">		id: 标识 uid</span><br><span class="line">		subs: [] subscribe订阅者数组, 内容是 watchers &#x2F;&#x2F; 即需要更新的所有相关表达式</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">watcher -&gt; &#123;</span><br><span class="line">	实例创建时间 &#x3D;&gt; 初始化解析大括号表达式&#x2F;一般指令时创建</span><br><span class="line">	数量 &#x3D;&gt; 与大括号表达式&#x2F;一般指令一一对应</span><br><span class="line">	结构 &#x3D;&gt; &#123;</span><br><span class="line">		cb: cb 界面更新回调</span><br><span class="line">		vm: vm</span><br><span class="line">		exp: 对应的表达式</span><br><span class="line">		depIds: &#123;&#125; 相关的n个dep      &#x2F;&#x2F; 主要用于判断关系是否建立, 避免再次建立dep watcher关系</span><br><span class="line">		value: get() 当前表达式value</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dep与Watcher关系</span><br><span class="line">关系 -&gt;</span><br><span class="line">	data属性 -&gt; 一个dep -&gt; n个watcher(属性在模板多次使用)</span><br><span class="line">	表达式 -&gt; watcher -&gt; n个dep(多层表达式, 如a.b, 对应了两个dep)</span><br><span class="line">建立 -&gt;</span><br><span class="line">	初始化data数据 -&gt; 每个数据增加dep, 并增加 get, set -&gt; 编译模板 -&gt; 拿到表达式 -&gt; 每个表达式增加一个watcher -&gt; watcher初始化会有个value属性 -&gt; 该value属性调用了dep的get方法 -&gt; dep的get方法depend() -&gt; 通过watcher的depIds判断关系是否建立 -&gt; dep 保存watcher到subs -&gt; watcher 的depIds保存dep</span><br><span class="line">响应式 -&gt;</span><br><span class="line">	vm.name &#x3D; &#39;abc&#39; -&gt; data中name属性值变化 -&gt; name的 set() -&gt; dep.notify()  -&gt; dep中subs数组中每个watcher进行update() -&gt; watcher.cb 回调 -&gt; updater更新界面</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>整体实现分为已下步骤</p>
+<ol>
+<li>实现一个 Observer，对数据进行劫持，通知数据的变化（将使用的要点为：Object.defineProperty()方法）</li>
+<li>实现一个 Compile，对指令进行解析，初始化视图，并且订阅数据的变更，绑定好更新函数</li>
+<li>实现一个 Watcher，将其作为以上两者的一个中介点，在接收数据变更的同时，让 Dep 添加当前 Watcher，并及时通知视图进行 update</li>
+<li>实现一些 VUE 的其他功能（Computed、menthods）</li>
+<li>实现 MVVM，整合以上几点，作为一个入口函数</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/2019070309492596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkaGFudW5pdHk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://laputaz.github.io/home/2018/09/22/vue-principle/" title="Vue源码整理, 数据代理和响应式" target="_blank" rel="external">https://laputaz.github.io/home/2018/09/22/vue-principle/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/juice.svg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">River</span><small class="ml-1x"></small></a></h3>
+        <div>不要沉溺过去, 写新的流水账吧</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/10/17/try-catch-return/" title="try里面放return，finally还会执行吗"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/08/30/css-float-clear-fix/" title="::before ::after 以及 clear:left, right, both"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+    <!-- <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div> -->
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:laputaz.github.io/home ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

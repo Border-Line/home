@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>River Z</title>
+  
+  <subtitle>Eat something that never eaten before.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://laputaz.github.io/home/"/>
+  <updated>2021-06-14T08:28:52.078Z</updated>
+  <id>https://laputaz.github.io/home/</id>
+  
+  <author>
+    <name>River Z</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Components</title>
+    <link href="https://laputaz.github.io/home/2021/02/12/Web-Components/"/>
+    <id>https://laputaz.github.io/home/2021/02/12/Web-Components/</id>
+    <published>2021-02-12T12:14:10.000Z</published>
+    <updated>2021-06-14T08:28:52.078Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ios下input聚焦问题</title>
+    <link href="https://laputaz.github.io/home/2021/02/12/ios%E4%B8%8Binput%E8%81%9A%E7%84%A6%E9%97%AE%E9%A2%98/"/>
+    <id>https://laputaz.github.io/home/2021/02/12/ios下input聚焦问题/</id>
+    <published>2021-02-12T05:19:33.000Z</published>
+    <updated>2021-06-14T08:28:52.079Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker容器化</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/docker%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/docker容器化/</id>
+    <published>2021-02-10T12:55:27.000Z</published>
+    <updated>2021-06-14T08:28:52.074Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于vue-cli实现自己的cli</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E5%9F%BA%E4%BA%8Evue-cli%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84cli/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/基于vue-cli实现自己的cli/</id>
+    <published>2021-02-10T10:07:53.000Z</published>
+    <updated>2021-06-14T08:28:52.077Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于百度amis的lowcode方案</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6amis%E7%9A%84lowcode%E6%96%B9%E6%A1%88/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/基于百度amis的lowcode方案/</id>
+    <published>2021-02-10T10:00:20.000Z</published>
+    <updated>2021-06-14T08:28:52.077Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>组件库的封装以及集成storybook展示</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E5%B0%81%E8%A3%85%E4%BB%A5%E5%8F%8A%E9%9B%86%E6%88%90storybook%E5%B1%95%E7%A4%BA/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/组件库的封装以及集成storybook展示/</id>
+    <published>2021-02-10T09:57:08.000Z</published>
+    <updated>2021-06-14T08:28:52.078Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><!-- admin团队的前端工程已经非常庞大, 主要技术栈为前期的 handlebars + koa, 混合后期的 vue 单页, 组件使用的是 elementUI 1.x, 该项目并不是只有 admin 团队来进行维护的, 包含了各个团队的模块, 包括库存/活动上线/市场运营/订单管理/财务/会员管理/积分管理/产品工具(如AB testing 实验)等等, 往往是由各个团队来开发, 代码风格不尽相同, 互相之间较为独立, 很容易因为不熟悉导致同一个功能的重复开发, 组件散布在各个业务模块代码下, 不便管理, 没有统一的 list, 造成 admin 工程越来越庞大## 目前的处理方案公司已经按照业务职能对团队进行了划分, 所以理想的状态是由各个业务线/模块维护自己的项目, admin 团队转换为 --><p>admin 的工程越来越庞大, 包含了各个团队的模块, 包括库存/活动上线/市场运营/订单管理/财务/会员管理/积分管理/产品工具(如AB testing 实验)等等, 往往是由各个团队自行维护, 代码风格不尽相同, 互相之间较为独立, 很容易因为不熟悉导致同一个功能的重复开发, 所以其中一个优化点就是组件的抽离</p><h2 id="组件库"><a href="#组件库" class="headerlink" title="组件库"></a>组件库</h2><p>组件抽离, 结合 storybook, 让组件状态可视化, 便于组件管理和复用, 同时也方便设计的同事参考</p><ol><li>建立 admin 组件库</li><li>建立 admin storybook - 可独立运行, 也可暴露文档至 klook-story展示</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;background&quot;&gt;&lt;a href=&quot;#background&quot; class=&quot;headerlink&quot; title=&quot;background&quot;&gt;&lt;/a&gt;background&lt;/h2&gt;&lt;!-- 
+admin团队的前端工程已经非常庞大, 主要技术栈为前期的 handl
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>上传文件到 aws s3 实现</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0-aws-s3-%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/上传文件到-aws-s3-实现/</id>
+    <published>2021-02-10T09:52:38.000Z</published>
+    <updated>2021-06-14T08:28:52.075Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>storybook 多语言插件实现(react)</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/storybook-%E5%A4%9A%E8%AF%AD%E8%A8%80%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0-react/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/storybook-多语言插件实现-react/</id>
+    <published>2021-02-10T09:52:19.000Z</published>
+    <updated>2021-06-14T08:28:52.074Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>elementui的表格summary自定义</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/elementui%E7%9A%84%E8%A1%A8%E6%A0%BCsummary%E8%87%AA%E5%AE%9A%E4%B9%89/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/elementui的表格summary自定义/</id>
+    <published>2021-02-10T09:52:02.000Z</published>
+    <updated>2021-06-14T08:28:52.074Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于elementui的表格&amp;表单&amp;弹窗组件封装实践</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E5%9F%BA%E4%BA%8Eelementui%E7%9A%84%E8%A1%A8%E6%A0%BC-%E8%A1%A8%E5%8D%95-%E5%BC%B9%E7%AA%97%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85%E5%AE%9E%E8%B7%B5/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/基于elementui的表格-表单-弹窗组件封装实践/</id>
+    <published>2021-02-10T09:51:11.000Z</published>
+    <updated>2021-06-14T08:28:52.076Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>google ads 和 sem 相关知识</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/google-ads-%E5%92%8C-sem-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/google-ads-和-sem-相关知识/</id>
+    <published>2021-02-10T09:50:18.000Z</published>
+    <updated>2021-06-14T08:28:52.074Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>cropperjs + canvas 实现图片标记工具</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/cropperjs-canvas-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%A0%87%E8%AE%B0%E5%B7%A5%E5%85%B7/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/cropperjs-canvas-实现图片标记工具/</id>
+    <published>2021-02-10T09:49:16.000Z</published>
+    <updated>2021-06-14T08:28:52.073Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>cloudinary和编写基于cloudinary的上传插件</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/cloudinary%E5%92%8C%E7%BC%96%E5%86%99%E5%9F%BA%E4%BA%8Ecloudinary%E7%9A%84%E4%B8%8A%E4%BC%A0%E6%8F%92%E4%BB%B6/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/cloudinary和编写基于cloudinary的上传插件/</id>
+    <published>2021-02-10T09:48:18.000Z</published>
+    <updated>2021-06-14T08:28:52.073Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用自定义 loader 按需加载element的css</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89-loader-%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BDelement%E7%9A%84css/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/使用自定义-loader-按需加载element的css/</id>
+    <published>2021-02-10T09:47:05.000Z</published>
+    <updated>2021-06-14T08:28:52.076Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Grid布局: 跑偏的用途</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/Grid%E5%B8%83%E5%B1%80-%E8%B7%91%E5%81%8F%E7%9A%84%E7%94%A8%E9%80%94/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/Grid布局-跑偏的用途/</id>
+    <published>2021-02-10T09:44:43.000Z</published>
+    <updated>2021-06-14T08:28:52.073Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二进制到blob和arraybuffer(四): wbmp图片格式转换</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%B0blob%E5%92%8Carraybuffer-%E5%9B%9B-wbmp%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/二进制到blob和arraybuffer-四-wbmp图片格式转换/</id>
+    <published>2021-02-10T09:43:17.000Z</published>
+    <updated>2021-06-14T08:28:52.076Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二进制到blob和arraybuffer(三): js中的blob和arraybuffer</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%B0blob%E5%92%8Carraybuffer-%E4%B8%89-js%E4%B8%AD%E7%9A%84blob%E5%92%8Carraybuffer/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/二进制到blob和arraybuffer-三-js中的blob和arraybuffer/</id>
+    <published>2021-02-10T09:42:47.000Z</published>
+    <updated>2021-06-14T08:28:52.075Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二进制到blob和arraybuffer(二): js进制转换</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%B0blob%E5%92%8Carraybuffer-%E4%BA%8C-js%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/二进制到blob和arraybuffer-二-js进制转换/</id>
+    <published>2021-02-10T09:40:26.000Z</published>
+    <updated>2021-06-14T08:28:52.075Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二进制到blob和arraybuffer(一): 二进制回顾</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%B0blob%E5%92%8Carraybuffer-%E4%B8%80-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9B%9E%E9%A1%BE/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/二进制到blob和arraybuffer-一-二进制回顾/</id>
+    <published>2021-02-10T09:40:01.000Z</published>
+    <updated>2021-06-14T08:28:52.075Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>色值转换之 rgb / hex / hsl</title>
+    <link href="https://laputaz.github.io/home/2021/02/10/%E8%89%B2%E5%80%BC%E8%BD%AC%E6%8D%A2%E4%B9%8B-rgb-hex-hsl/"/>
+    <id>https://laputaz.github.io/home/2021/02/10/色值转换之-rgb-hex-hsl/</id>
+    <published>2021-02-10T09:30:32.000Z</published>
+    <updated>2021-06-14T08:28:52.078Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
